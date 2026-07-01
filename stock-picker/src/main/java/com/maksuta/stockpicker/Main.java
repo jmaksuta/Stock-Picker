@@ -21,8 +21,15 @@ import yahoofinance.histquotes.Interval;
 public class Main {
     public static void main(String[] args) {
 
-        Main main = new Main();
+        Main main = new Main(5);
         main.run();
+    }
+
+    private final int batchSize;
+
+    public Main(int batchSize) {
+        super();
+        this.batchSize = batchSize;
     }
 
     public void run() {
@@ -30,7 +37,7 @@ public class Main {
         printDisplay();
         try {
 
-            String[][] batches = createBatches(symbols, 5);
+            String[][] batches = createBatches(symbols, this.batchSize);
 
             for (String[] batch : batches) {
                 processBatch(batch);
